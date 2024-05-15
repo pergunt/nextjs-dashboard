@@ -1,4 +1,4 @@
-import { Revenue } from './definitions';
+import { Row } from 'configs';
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -6,6 +6,15 @@ export const formatCurrency = (amount: number) => {
     currency: 'USD',
   });
 };
+
+export const fetchHandler = <TData = any,>(fn: () => Promise<TData>) => async () => {
+  try {
+    return await fn()
+  } catch (error: any) {
+    console.error('Database Error:', error);
+    throw new Error(error.message);
+  }
+}
 
 export const formatDateToLocal = (
   dateStr: string,
@@ -21,7 +30,7 @@ export const formatDateToLocal = (
   return formatter.format(date);
 };
 
-export const generateYAxis = (revenue: Revenue[]) => {
+export const generateYAxis = (revenue: Row['revenue'][]) => {
   // Calculate what labels we need to display on the y-axis
   // based on highest record and in 1000s
   const yAxisLabels = [];

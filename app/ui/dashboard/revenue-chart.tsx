@@ -1,7 +1,7 @@
-import { generateYAxis } from '@/lib/utils';
+import { generateYAxis } from 'lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import { lusitana } from '@/ui/fonts';
-import { Revenue } from '@/lib/definitions';
+import { lusitana } from 'ui/fonts';
+import { Revenue } from 'lib/definitions';
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -14,7 +14,7 @@ const RevenueChart = async ({
 }: {
   revenue: Revenue[];
 })  => {
-  const chartHeight = 500;
+  const chartHeight = 400;
   // NOTE: comment in this code when you get to this point in the course
 
   const { yAxisLabels, topLabel } = generateYAxis(revenue);

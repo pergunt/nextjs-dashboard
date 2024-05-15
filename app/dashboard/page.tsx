@@ -1,15 +1,16 @@
-import {Dashboard, fonts} from '@/ui';
-import {fetchRevenue, fetchLatestInvoices, fetchCardData} from '@/lib'
+import {Dashboard, fonts} from 'ui';
+import {revenue, invoice, dashboard} from 'data'
+
 
 const Page = async () => {
   const [
-    revenue,
+    revenueList,
     latestInvoices,
     cardData
   ] = await Promise.all([
-    fetchRevenue(),
-    fetchLatestInvoices(),
-    fetchCardData()
+    revenue.getList(),
+    invoice.listLatest(),
+    dashboard.fetchCardData()
   ]);
 
   return (
@@ -24,7 +25,7 @@ const Page = async () => {
          <Dashboard.Card title="Total Customers" value={cardData.numberOfCustomers} type="customers" />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-         <Dashboard.RevenueChart revenue={revenue}  />
+         <Dashboard.RevenueChart revenue={revenueList}  />
          <Dashboard.LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
