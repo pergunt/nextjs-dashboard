@@ -32,10 +32,10 @@ async function seedUsers(db) {
     }))
 
     const insertedUsers = await db
-        .insertInto('users')
-        .values(values)
-        .onConflict(cb => cb.doNothing())
-        .execute()
+      .insertInto('users')
+      .values(values)
+      .onConflict(cb => cb.doNothing())
+      .execute()
 
 
     console.log(`Seeded ${insertedUsers.length} users`);
