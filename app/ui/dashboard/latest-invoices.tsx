@@ -2,13 +2,11 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from 'ui/fonts';
-import { LatestInvoice } from 'lib/definitions';
+import { invoice } from 'data';
 
-export async function LatestInvoices({
-  latestInvoices,
-}: {
-  latestInvoices: LatestInvoice[];
-}) {
+export async function LatestInvoices() {
+  const latestInvoices = await invoice.listLatest()
+
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -18,7 +16,7 @@ export async function LatestInvoices({
         {/* NOTE: comment in this code when you get to this point in the course */}
 
         <div className="bg-white px-6">
-          {latestInvoices.map((invoice, i) => {
+          {latestInvoices?.map((invoice, i) => {
             return (
               <div
                 key={invoice.id}

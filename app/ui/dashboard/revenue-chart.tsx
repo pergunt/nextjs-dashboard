@@ -1,7 +1,7 @@
 import { generateYAxis } from 'lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from 'ui/fonts';
-import { Revenue } from 'lib/definitions';
+import {revenue} from 'data'
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -9,17 +9,14 @@ import { Revenue } from 'lib/definitions';
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-const RevenueChart = async ({
-  revenue,
-}: {
-  revenue: Revenue[];
-})  => {
+const RevenueChart = async ()  => {
+  const revenueList = await revenue.getList()
   const chartHeight = 400;
   // NOTE: comment in this code when you get to this point in the course
 
-  const { yAxisLabels, topLabel } = generateYAxis(revenue);
+  const { yAxisLabels, topLabel } = generateYAxis(revenueList);
 
-  if (!revenue || revenue.length === 0) {
+  if (!revenueList?.length) {
     return <p className="mt-4 text-gray-400">No data available.</p>;
   }
 
@@ -41,7 +38,7 @@ const RevenueChart = async ({
             ))}
           </div>
 
-          {revenue.map((month) => (
+          {revenueList.map((month) => (
             <div key={month.month} className="flex flex-col items-center gap-2">
               <div
                 className="w-full rounded-md bg-blue-300"
