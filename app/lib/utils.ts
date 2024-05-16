@@ -1,4 +1,4 @@
-import { Row } from 'configs';
+import {Row} from 'types'
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -7,7 +7,7 @@ export const formatCurrency = (amount: number) => {
   });
 };
 
-export const fetchHandler = <TData = any, TArgs = any>(
+export const fetchHandler = <TData = any, TArgs = void>(
   fn: (args: TArgs) => Promise<TData>
 ) => async (args: TArgs): Promise<TData> => {
   try {

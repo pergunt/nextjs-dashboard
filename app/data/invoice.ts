@@ -1,6 +1,7 @@
-import {db, Row} from "configs";
+import {db} from "configs";
 import {formatCurrency, fetchHandler} from "lib";
 import { unstable_noStore as noStore } from 'next/cache';
+import {Row} from 'types'
 
 export const listLatest = fetchHandler(async () => {
   noStore()
