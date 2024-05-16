@@ -1,3 +1,5 @@
 export * as Dashboard from './dashboard'
+export * as Invoices from './invoices'
 export * as fonts from './fonts'
 export * as Skeletons from './skeletons'
+export {default as Search} from './search'

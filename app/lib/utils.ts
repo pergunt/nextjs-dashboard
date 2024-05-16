@@ -7,14 +7,16 @@ export const formatCurrency = (amount: number) => {
   });
 };
 
-export const fetchHandler = <TData = any,>(fn: () => Promise<TData>) => async () => {
+export const fetchHandler = <TData = any, TArgs = any>(
+  fn: (args: TArgs) => Promise<TData>
+) => async (args: TArgs): Promise<TData> => {
   try {
-    return await fn()
+    return await fn(args);
   } catch (error: any) {
     console.error('Database Error:', error);
     throw new Error(error.message);
   }
-}
+};
 
 export const formatDateToLocal = (
   dateStr: string,
