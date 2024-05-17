@@ -120,13 +120,16 @@ export const fetchPages = fetchHandler<[string], number>(async (query: string)  
   return Math.ceil(Number(count) / ITEMS_PER_PAGE);
 })
 
-export const findOne = fetchHandler<[string], Invoice>(async (id) => {
+export const findOne = fetchHandler<[string], Invoice | null>(async (id) => {
   const invoice = await db
     .selectFrom('invoices')
     .where('id', '=', id)
     .selectAll()
-    .executeTakeFirstOrThrow()
+    .executeTakeFirst()
 
+  if (!invoice) {
+    return null
+  }
 
     return {
       ...invoice,
