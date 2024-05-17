@@ -1,11 +1,8 @@
 import {db} from "configs";
 import {formatCurrency, fetchHandler} from 'utils'
-import { unstable_noStore as noStore } from 'next/cache';
 import {Row} from 'types'
 
 export const listLatest = fetchHandler(async () => {
-  noStore()
-
   const data = await db
     .selectFrom('invoices')
     .innerJoin('customers', 'customers.id', 'invoices.customer_id')
@@ -27,8 +24,6 @@ export const listLatest = fetchHandler(async () => {
 })
 
 export const count = async () => {
-  noStore()
-
   const [{total}] = await db
     .selectFrom('invoices')
     .select(eb => eb.fn.count('invoices.id').as('total'))
@@ -38,8 +33,6 @@ export const count = async () => {
 }
 
 export const getStatus = async () => {
-  noStore()
-
   const [{paid, pending}] = await db
     .selectFrom('invoices')
     .select(eb => [

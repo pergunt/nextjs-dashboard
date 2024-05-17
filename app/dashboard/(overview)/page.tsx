@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 import {Dashboard, fonts, Skeletons} from 'ui';
 
 
+export const dynamic = 'force-dynamic'
+
 const Page = async () => {
 
   return (
