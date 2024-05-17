@@ -6,12 +6,12 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from 'ui/button';
-import {createInvoice} from 'lib/actions'
-import { Row } from 'types';
+import {invoiceActions} from 'actions'
+import { Customer } from 'types';
 
-export default function Form({ customers }: { customers: Row['customers'][] }) {
+ function Form({ customers }: { customers: Customer[] }) {
   return (
-    <form action={createInvoice}>
+    <form action={invoiceActions.createOne}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -111,3 +111,5 @@ export default function Form({ customers }: { customers: Row['customers'][] }) {
     </form>
   );
 }
+
+export default Form

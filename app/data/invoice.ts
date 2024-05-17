@@ -16,7 +16,7 @@ export const listLatest = fetchHandler(async () => {
       'customers.image_url',
       'customers.email',
     ])
-    .orderBy('invoices.date', 'desc')
+    .orderBy('invoices.createdAt', 'desc')
     .limit(5)
     .execute()
 
@@ -76,8 +76,9 @@ const ITEMS_PER_PAGE = 6;
 type Invoice = Row['invoices']
 type Customer = Row['customers']
 
-interface FilteredResult extends Omit<Invoice, 'date' | 'customer_id'>, Pick<Customer, 'name' | 'email' | 'image_url'> {
-  date: string;
+interface FilteredResult extends Omit<Invoice, 'createdAt' | 'updatedAt' |  'customer_id'>, Pick<Customer, 'name' | 'email' | 'image_url'> {
+  updatedAt: string;
+  createdAt: string;
 }
 
 export const listFiltered = fetchHandler<FilteredResult[], {query: string; currentPage: number}>(async ({query, currentPage}) => {
@@ -90,19 +91,20 @@ export const listFiltered = fetchHandler<FilteredResult[], {query: string; curre
       eb('C.name', 'ilike', `%${query}%`),
       eb('C.email', 'ilike', `%${query}%`),
       eb(eb.cast('I.amount', 'text'), 'ilike', `%${query}%`),
-      eb(eb.cast('I.date', 'text'), 'ilike', `%${query}%`),
+      eb(eb.cast('I.createdAt', 'text'), 'ilike', `%${query}%`),
       eb('I.status', 'ilike', `%${query}%`),
     ]))
     .select(eb => [
       'I.id',
       'I.amount',
-      eb.cast<string>('I.date', 'text').as('date'),
+      eb.cast<string>('I.createdAt', 'text').as('createdAt'),
+      eb.cast<string>('I.updatedAt', 'text').as('updatedAt'),
       'I.status',
       'C.name',
       'C.email',
       'C.image_url',
     ])
-    .orderBy('I.date', 'desc')
+    .orderBy(['I.updatedAt asc', 'I.createdAt desc'])
     .limit(ITEMS_PER_PAGE)
     .offset(offset)
     .execute()
@@ -116,7 +118,7 @@ export const fetchPages = fetchHandler<number, string>(async (query: string)  =>
       eb('C.name', 'ilike', `%${query}%`),
       eb('C.email', 'ilike', `%${query}%`),
       eb(eb.cast('I.amount', 'text'), 'ilike', `%${query}%`),
-      eb(eb.cast('I.date', 'text'), 'ilike', `%${query}%`),
+      eb(eb.cast('I.createdAt', 'text'), 'ilike', `%${query}%`),
       eb('I.status', 'ilike', `%${query}%`),
     ]))
     .select((eb) => eb.fn.count('I.id').as('count'))

@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from './buttons';
-import InvoiceStatus from './status';
+import {Status, DeleteButton, UpdateLink} from './components';
 import { formatDateToLocal, formatCurrency } from 'lib';
 import { invoice } from 'data';
 
-export default async function InvoicesTable({
+async function Table({
   query,
   currentPage,
 }: {
@@ -40,18 +39,18 @@ export default async function InvoicesTable({
                     </div>
                     <p className="text-sm text-gray-500">{invoice.email}</p>
                   </div>
-                  <InvoiceStatus status={invoice.status} />
+                  <Status status={invoice.status} />
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
                     <p className="text-xl font-medium">
                       {formatCurrency(invoice.amount)}
                     </p>
-                    <p>{formatDateToLocal(invoice.date)}</p>
+                    <p>{formatDateToLocal(invoice.createdAt)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
+                    <UpdateLink id={invoice.id} />
+                    <DeleteButton id={invoice.id} />
                   </div>
                 </div>
               </div>
@@ -70,7 +69,10 @@ export default async function InvoicesTable({
                   Amount
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Date
+                  Created At
+                </th>
+                <th scope="col" className="px-3 py-5 font-medium">
+                  Updated At
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Status
@@ -105,15 +107,18 @@ export default async function InvoicesTable({
                     {formatCurrency(invoice.amount)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(invoice.date)}
+                    {formatDateToLocal(invoice.createdAt)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    <InvoiceStatus status={invoice.status} />
+                    {invoice.updatedAt && formatDateToLocal(invoice.updatedAt)}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    <Status status={invoice.status} />
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      <UpdateInvoice id={invoice.id} />
-                      <DeleteInvoice id={invoice.id} />
+                      <UpdateLink id={invoice.id} />
+                      <DeleteButton id={invoice.id} />
                     </div>
                   </td>
                 </tr>
@@ -125,3 +130,5 @@ export default async function InvoicesTable({
     </div>
   );
 }
+
+export default Table

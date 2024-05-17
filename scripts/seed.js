@@ -5,7 +5,7 @@ import {
   customers,
   revenue,
   users,
-} from  '../app/lib/placeholder-data'
+} from  './placeholder-data'
 import bcrypt from 'bcrypt'
 
 async function seedUsers(db) {

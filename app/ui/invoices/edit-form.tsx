@@ -1,6 +1,5 @@
 'use client';
 
-import { CustomerField, InvoiceForm } from 'lib/definitions';
 import {
   CheckIcon,
   ClockIcon,
@@ -9,16 +8,20 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Button } from 'ui/button';
+import {invoiceActions} from 'actions'
+import { Customer, Invoice } from 'types';
 
 export default function EditInvoiceForm({
   invoice,
   customers,
 }: {
-  invoice: InvoiceForm;
-  customers: CustomerField[];
+  invoice: Invoice;
+  customers: Customer[];
 }) {
+  const handleEdit = invoiceActions.updateOne.bind(null, invoice.id)
+
   return (
-    <form>
+    <form action={handleEdit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -28,7 +31,7 @@ export default function EditInvoiceForm({
           <div className="relative">
             <select
               id="customer"
-              name="customerId"
+              name="customer_id"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               defaultValue={invoice.customer_id}
             >
