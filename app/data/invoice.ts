@@ -1,5 +1,5 @@
 import {db} from "configs";
-import {formatCurrency, fetchHandler} from "lib";
+import {formatCurrency, fetchHandler} from 'utils'
 import { unstable_noStore as noStore } from 'next/cache';
 import {Row} from 'types'
 
@@ -81,7 +81,7 @@ interface FilteredResult extends Omit<Invoice, 'createdAt' | 'updatedAt' |  'cus
   createdAt: string;
 }
 
-export const listFiltered = fetchHandler<FilteredResult[], {query: string; currentPage: number}>(async ({query, currentPage}) => {
+export const listFiltered = fetchHandler<[{query: string; currentPage: number}], FilteredResult[]>(async ({query, currentPage}) => {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   return db
@@ -110,7 +110,7 @@ export const listFiltered = fetchHandler<FilteredResult[], {query: string; curre
     .execute()
 })
 
-export const fetchPages = fetchHandler<number, string>(async (query: string)  => {
+export const fetchPages = fetchHandler<[string], number>(async (query: string)  => {
   const [{count}] = await db
     .selectFrom('invoices as I')
     .innerJoin('customers as C', 'C.id', 'I.customer_id')
@@ -127,7 +127,7 @@ export const fetchPages = fetchHandler<number, string>(async (query: string)  =>
   return Math.ceil(Number(count) / ITEMS_PER_PAGE);
 })
 
-export const findOne = fetchHandler<Invoice, string>(async (id) => {
+export const findOne = fetchHandler<[string], Invoice>(async (id) => {
   const invoice = await db
     .selectFrom('invoices')
     .where('id', '=', id)

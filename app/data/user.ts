@@ -1,8 +1,7 @@
 import {db} from "configs";
-import {fetchHandler} from 'lib'
-import {Row} from 'types'
+import {fetchHandler} from 'utils'
 
-export const getUser = fetchHandler<Row['users'], string>((email) => {
+export const getUser = fetchHandler<[string]>((email) => {
   return db
     .selectFrom('users')
     .selectAll()

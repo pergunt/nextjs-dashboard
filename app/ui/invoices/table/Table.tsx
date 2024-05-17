@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {Status, DeleteButton, UpdateLink} from './components';
-import { formatDateToLocal, formatCurrency } from 'lib';
+import { formatDateToLocal, formatCurrency } from 'utils';
 import { invoice } from 'data';
 
 async function Table({

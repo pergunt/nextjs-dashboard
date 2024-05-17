@@ -1,6 +1,6 @@
 import {db} from "configs";
 import { unstable_noStore as noStore } from 'next/cache';
-import {fetchHandler, formatCurrency} from 'lib'
+import { formatCurrency, fetchHandler} from 'utils'
 import {Row} from 'types'
 
 export const count = async () => {
@@ -27,7 +27,7 @@ interface FilteredResult extends Pick<Row['customers'], 'id' | 'name' | 'email' 
   total_paid: string;
 }
 
-export const listFiltered = fetchHandler<FilteredResult[], string>(async (query) => {
+export const listFiltered = fetchHandler<[string], FilteredResult[]>(async (query) => {
     const data = await db
       .selectFrom('customers as C')
       .leftJoin('invoices as I', 'I.customer_id', 'C.id')

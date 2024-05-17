@@ -2,14 +2,19 @@ import Image from 'next/image';
 import { lusitana } from 'ui/fonts';
 import Search from 'ui/search';
 import {
-  CustomersTableType,
-  FormattedCustomersTable,
-} from 'lib/definitions';
+  Customer,
+} from 'types';
+
+interface FormattedCustomer extends Customer {
+  total_pending: number;
+  total_paid: number;
+  total_invoices: number;
+}
 
 export default async function CustomersTable({
   customers,
 }: {
-  customers: FormattedCustomersTable[];
+  customers: FormattedCustomer[];
 }) {
   return (
     <div className="w-full">

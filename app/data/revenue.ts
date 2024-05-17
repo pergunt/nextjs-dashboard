@@ -1,5 +1,5 @@
 import {db} from "configs";
-import {fetchHandler} from "lib";
+import {fetchHandler} from 'utils'
 import { unstable_noStore as noStore } from 'next/cache';
 
 export const getList = fetchHandler( async () => {

@@ -1,21 +1,11 @@
 import {Row} from 'types'
+import {redirect} from "next/navigation";
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   });
-};
-
-export const fetchHandler = <TData = any, TArgs = void>(
-  fn: (args: TArgs) => Promise<TData>
-) => async (args: TArgs): Promise<TData> => {
-  try {
-    return await fn(args);
-  } catch (error: any) {
-    console.error('Database Error:', error);
-    throw new Error(error.message);
-  }
 };
 
 export const formatDateToLocal = (
@@ -31,6 +21,30 @@ export const formatDateToLocal = (
   const formatter = new Intl.DateTimeFormat(locale, options);
   return formatter.format(date);
 };
+
+export const fetchHandler = <TArgs extends any[], TData = any,>(
+  fn: (...args: TArgs) => Promise<TData>,
+  redirectURL?: string
+) => {
+  // the context is important
+  return async function (...args: TArgs): Promise<TData> {
+    let result: TData
+
+    try {
+      result = await fn(...args);
+    } catch (error: any) {
+      console.error('Database Error:', error);
+      throw new Error(error.message);
+    }
+
+    if (redirectURL) {
+      redirect(redirectURL)
+    }
+
+    return result
+  };
+}
+
 
 export const generateYAxis = (revenue: Row['revenue'][]) => {
   // Calculate what labels we need to display on the y-axis

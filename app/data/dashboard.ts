@@ -1,6 +1,6 @@
 import * as invoice from './invoice'
 import * as customer from './customer'
-import {fetchHandler} from 'lib'
+import {fetchHandler} from 'utils'
 
 export const fetchCardData = fetchHandler(async () => {
   const [

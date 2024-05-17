@@ -1,9 +1,13 @@
 'use server';
 
 import {db} from 'configs'
-import {operations, schemas} from './duck'
+import {fetchHandler} from 'utils'
+import {schemas} from './duck'
+import {revalidatePath} from "next/cache";
 
-export const createOne = async (formData: FormData) => {
+const ROUTE_PATH = '/dashboard/invoices'
+
+export const createOne = fetchHandler<[FormData]>(async (formData) => {
   const entries = Object.fromEntries(formData.entries())
   const {amount, customer_id, status} = schemas.CreateUpdateInvoice.parse(entries)
   const amountInCents = amount * 100;
@@ -19,10 +23,10 @@ export const createOne = async (formData: FormData) => {
     })
     .execute()
 
-  operations.invalidatePath()
-}
+  revalidatePath(ROUTE_PATH)
+}, ROUTE_PATH)
 
-export const updateOne = async (id: string, formData: FormData) => {
+export const updateOne = fetchHandler<[string, FormData], void>(async (id, formData) => {
   const entries = Object.fromEntries(formData.entries())
   const {amount, customer_id, status} = schemas.CreateUpdateInvoice.parse(entries)
   const amountInCents = amount * 100;
@@ -38,14 +42,14 @@ export const updateOne = async (id: string, formData: FormData) => {
     .where('id', '=', id)
     .execute()
 
-  operations.invalidatePath()
-}
+  revalidatePath(ROUTE_PATH)
+}, ROUTE_PATH)
 
-export const deleteOne = async (id: string) => {
+export const deleteOne = fetchHandler<[string]>(async (id) => {
   await db
     .deleteFrom('invoices')
     .where('id', '=', id)
     .execute()
 
-  operations.invalidatePath(false)
-}
+  revalidatePath(ROUTE_PATH)
+})
