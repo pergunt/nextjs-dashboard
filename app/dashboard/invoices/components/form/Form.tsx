@@ -7,10 +7,10 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import { Button } from 'ui/button';
-import {ErrorMessage} from './components'
-import {invoiceActions} from 'actions'
 import { useFormState } from 'react-dom';
+import {ErrorMessage} from './components'
+import {Button} from 'ui';
+import {invoiceActions} from 'actions'
 import { Customer, Invoice } from 'types';
 
 interface FormProps {
@@ -28,7 +28,7 @@ interface FormProps {
      errors: {}
    });
 
-  console.log(state)
+
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

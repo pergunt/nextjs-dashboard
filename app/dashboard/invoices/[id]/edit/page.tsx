@@ -1,6 +1,8 @@
-import {Invoices} from 'ui';
+
 import { customer, invoice } from 'data';
 import { notFound } from 'next/navigation'
+import {Breadcrumbs} from 'ui';
+import {Form} from '../../components'
 
 const Page  = async ({ params }: { params: { id: string } }) => {
   const [invoiceRecord, customers] = await Promise.all([
@@ -14,7 +16,7 @@ const Page  = async ({ params }: { params: { id: string } }) => {
 
   return (
     <main>
-      <Invoices.Breadcrumbs
+      <Breadcrumbs
         breadcrumbs={[
           { label: 'Invoices', href: '/dashboard/invoices' },
           {
@@ -24,7 +26,7 @@ const Page  = async ({ params }: { params: { id: string } }) => {
           },
         ]}
       />
-      <Invoices.Form invoice={invoiceRecord} customers={customers} />
+      <Form invoice={invoiceRecord} customers={customers} />
     </main>
   );
 }

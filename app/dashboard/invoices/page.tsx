@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
-import {Invoices, Skeletons, Search, fonts} from 'ui';
+import { Skeletons, Search, fonts} from 'ui';
+import {Table, CreateNewButton, Pagination} from './components'
 import {invoice} from 'data'
 
 const Page = async ({
@@ -21,13 +22,13 @@ const Page = async ({
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
-        <Invoices.CreateInvoiceButton />
+        <CreateNewButton />
       </div>
       <Suspense key={query + currentPage} fallback={<Skeletons.InvoicesTableSkeleton />}>
-        <Invoices.Table query={query} currentPage={currentPage} />
+        <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        <Invoices.Pagination totalPages={totalPages} />
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );

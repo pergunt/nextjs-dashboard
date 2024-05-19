@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { lusitana } from 'ui/fonts';
-import Search from 'ui/search';
+import Search from '../search';
+import { lusitana } from '../fonts';
 import {
   Customer,
 } from 'types';

@@ -1,12 +1,13 @@
-import {Invoices} from 'ui';
 import { customer } from 'data';
+import {Breadcrumbs} from 'ui';
+import {Form} from '../components'
 
 export default async function Page() {
   const customers = await customer.getList();
 
   return (
     <main>
-      <Invoices.Breadcrumbs
+      <Breadcrumbs
         breadcrumbs={[
           { label: 'Invoices', href: '/dashboard/invoices' },
           {
@@ -16,7 +17,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Invoices.Form customers={customers} />
+      <Form customers={customers} />
     </main>
   );
 }
