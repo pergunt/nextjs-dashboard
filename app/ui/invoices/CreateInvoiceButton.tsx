@@ -1,7 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-export function CreateInvoice() {
+ const CreateInvoiceButton = () => {
   return (
     <Link
       href="/dashboard/invoices/create"
@@ -12,3 +12,5 @@ export function CreateInvoice() {
     </Link>
   );
 }
+
+export default CreateInvoiceButton

@@ -9,7 +9,6 @@ const Page  = async ({ params }: { params: { id: string } }) => {
   ]);
 
   if (!invoiceRecord) {
-    console.log('NOT FOUND')
     notFound()
   }
 
@@ -25,7 +24,7 @@ const Page  = async ({ params }: { params: { id: string } }) => {
           },
         ]}
       />
-      <Invoices.EditForm invoice={invoiceRecord} customers={customers} />
+      <Invoices.Form invoice={invoiceRecord} customers={customers} />
     </main>
   );
 }

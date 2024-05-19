@@ -9,7 +9,8 @@
     "up": "next start",
     "start": "run-s gen dev",
     "seed": "npx -p @babel/core -p @babel/node babel-node --presets @babel/preset-env -r dotenv/config ./scripts/seed.js",
-    "gen": "kysely-codegen"
+    "gen": "kysely-codegen",
+    "lint": "next lint"
   },
   "dependencies": {
     "@heroicons/react": "2.0.18",

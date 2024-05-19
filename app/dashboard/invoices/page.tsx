@@ -14,7 +14,6 @@ const Page = async ({
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = await invoice.fetchPages(query)
 
-  console.log(totalPages)
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -22,7 +21,7 @@ const Page = async ({
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
-        <Invoices.Buttons.CreateInvoice />
+        <Invoices.CreateInvoiceButton />
       </div>
       <Suspense key={query + currentPage} fallback={<Skeletons.InvoicesTableSkeleton />}>
         <Invoices.Table query={query} currentPage={currentPage} />

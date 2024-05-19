@@ -16,7 +16,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Invoices.CreateForm customers={customers} />
+      <Invoices.Form customers={customers} />
     </main>
   );
 }
