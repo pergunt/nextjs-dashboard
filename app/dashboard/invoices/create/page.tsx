@@ -1,6 +1,5 @@
 import { customer } from 'data';
-import {Breadcrumbs} from 'ui';
-import {Form} from '../components'
+import {Breadcrumbs, Invoice} from 'ui';
 
 export default async function Page() {
   const customers = await customer.getList();
@@ -17,7 +16,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Form customers={customers} />
+      <Invoice.Form customers={customers} />
     </main>
   );
 }

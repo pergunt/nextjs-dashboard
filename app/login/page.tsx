@@ -1,4 +1,4 @@
-import {LoginForm} from './components';
+import {Login} from 'ui';
 import AcmeLogo from 'ui/AcmeLogo'
 
 const LoginPage = () => {
@@ -10,7 +10,7 @@ const LoginPage = () => {
             <AcmeLogo />
           </div>
         </div>
-        <LoginForm />
+        <Login.Form />
       </div>
     </main>
   );

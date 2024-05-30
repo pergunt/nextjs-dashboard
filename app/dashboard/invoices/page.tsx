@@ -1,7 +1,12 @@
 import { Suspense } from 'react';
-import { Skeletons, Search, fonts} from 'ui';
-import {Table, CreateNewButton, Pagination} from './components'
+import { Skeletons, Search, fonts, Invoice} from 'ui';
 import {invoice} from 'data'
+
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Invoices | Acme Dashboard',
+};
 
 const Page = async ({
                       searchParams,
@@ -22,13 +27,13 @@ const Page = async ({
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
-        <CreateNewButton />
+        <Invoice.CreateNewButton />
       </div>
       <Suspense key={query + currentPage} fallback={<Skeletons.InvoicesTableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
+        <Invoice.Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
+        <Invoice.Pagination totalPages={totalPages} />
       </div>
     </div>
   );

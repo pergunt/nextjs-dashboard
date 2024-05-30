@@ -1,8 +1,7 @@
 
 import { customer, invoice } from 'data';
 import { notFound } from 'next/navigation'
-import {Breadcrumbs} from 'ui';
-import {Form} from '../../components'
+import {Breadcrumbs, Invoice} from 'ui';
 
 const Page  = async ({ params }: { params: { id: string } }) => {
   const [invoiceRecord, customers] = await Promise.all([
@@ -26,7 +25,7 @@ const Page  = async ({ params }: { params: { id: string } }) => {
           },
         ]}
       />
-      <Form invoice={invoiceRecord} customers={customers} />
+      <Invoice.Form invoice={invoiceRecord} customers={customers} />
     </main>
   );
 }
