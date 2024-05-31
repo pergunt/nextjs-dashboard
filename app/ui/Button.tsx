@@ -45,8 +45,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
           <motion.div
             className={children ? 'mr-2' : undefined}
             initial={{ width: children ? 0 : 14 }}
-            animate={{ width: 14 }}
-            transition={{ duration: 0.5, type: 'tween' }}
+            animate={{width: 14}}
+            transition={{duration: 0.5, type: 'tween',}}
           >
             <Spin className={kind === 'primary' ? 'fill-white' : 'fill-black'} />
           </motion.div>

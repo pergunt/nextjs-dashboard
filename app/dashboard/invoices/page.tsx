@@ -5,7 +5,7 @@ import {invoice} from 'data'
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Invoices | Acme Dashboard',
+  title: 'Invoices',
 };
 
 const Page = async ({

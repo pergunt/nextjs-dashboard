@@ -1,5 +1,10 @@
 import {Login} from 'ui';
 import AcmeLogo from 'ui/AcmeLogo'
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: 'Login',
+};
 
 const LoginPage = () => {
   return (
