@@ -1,16 +1,15 @@
-
 import { customer, invoice } from 'data';
-import { notFound } from 'next/navigation'
-import {Breadcrumbs, Invoice} from 'ui';
+import { notFound } from 'next/navigation';
+import { Breadcrumbs, Invoice } from 'ui';
 
-const Page  = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const [invoiceRecord, customers] = await Promise.all([
     invoice.findOne(params.id),
     customer.getList(),
   ]);
 
   if (!invoiceRecord) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -28,6 +27,6 @@ const Page  = async ({ params }: { params: { id: string } }) => {
       <Invoice.Form invoice={invoiceRecord} customers={customers} />
     </main>
   );
-}
+};
 
-export default Page
+export default Page;

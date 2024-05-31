@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import Link from "next/link";
+import clsx from 'clsx';
+import Link from 'next/link';
 
 interface PaginationNumberProps {
   page: number | string;
@@ -7,7 +7,6 @@ interface PaginationNumberProps {
   position?: 'first' | 'last' | 'middle' | 'single';
   isActive: boolean;
 }
-
 
 const PaginationNumber = ({
   page,
@@ -33,6 +32,6 @@ const PaginationNumber = ({
       {page}
     </Link>
   );
-}
+};
 
-export default PaginationNumber
+export default PaginationNumber;

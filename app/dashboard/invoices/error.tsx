@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 
 const PageError = ({
-                                error,
-                                reset,
-                              }: {
+  error,
+  reset,
+}: {
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
@@ -28,6 +28,6 @@ const PageError = ({
       </button>
     </main>
   );
-}
+};
 
-export default PageError
+export default PageError;

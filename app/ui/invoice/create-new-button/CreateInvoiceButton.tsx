@@ -1,7 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
- const CreateInvoiceButton = () => {
+const CreateInvoiceButton = () => {
   return (
     <Link
       href="/dashboard/invoices/create"
@@ -11,6 +11,6 @@ import Link from 'next/link';
       <PlusIcon className="h-5 md:ml-4" />
     </Link>
   );
-}
+};
 
-export default CreateInvoiceButton
+export default CreateInvoiceButton;

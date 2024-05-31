@@ -1,5 +1,5 @@
 import { customer } from 'data';
-import {Breadcrumbs, Invoice} from 'ui';
+import { Breadcrumbs, Invoice } from 'ui';
 
 export default async function Page() {
   const customers = await customer.getList();

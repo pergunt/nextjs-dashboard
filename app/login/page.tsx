@@ -1,6 +1,6 @@
-import {Login} from 'ui';
-import AcmeLogo from 'ui/AcmeLogo'
-import {Metadata} from "next";
+import { Login } from 'ui';
+import AcmeLogo from 'ui/AcmeLogo';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -19,6 +19,6 @@ const LoginPage = () => {
       </div>
     </main>
   );
-}
+};
 
-export default LoginPage
+export default LoginPage;

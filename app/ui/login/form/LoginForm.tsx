@@ -7,12 +7,15 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { useFormState, useFormStatus } from 'react-dom';
-import {lusitana} from 'ui/fonts';
+import { lusitana } from 'ui/fonts';
 import Button from 'ui/Button';
 import { authActions } from 'actions';
 
 export default function LoginForm() {
-  const [errorMessage, dispatch] = useFormState(authActions.authenticate, undefined);
+  const [errorMessage, dispatch] = useFormState(
+    authActions.authenticate,
+    undefined,
+  );
 
   return (
     <form action={dispatch} className="space-y-3">

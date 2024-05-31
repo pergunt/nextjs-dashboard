@@ -10,6 +10,6 @@ const AcmeLogo = () => {
       <p className="text-[44px]">Acme</p>
     </div>
   );
-}
+};
 
-export default AcmeLogo
+export default AcmeLogo;

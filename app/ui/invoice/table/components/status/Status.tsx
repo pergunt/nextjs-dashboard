@@ -26,6 +26,6 @@ const Status = ({ status }: { status: string }) => {
       )}
     </span>
   );
-}
+};
 
-export default Status
+export default Status;

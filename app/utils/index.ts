@@ -1,5 +1,5 @@
-import {Row} from 'types'
-import {redirect} from "next/navigation";
+import { Row } from 'types';
+import { redirect } from 'next/navigation';
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -22,13 +22,14 @@ export const formatDateToLocal = (
   return formatter.format(date);
 };
 
-export const fetchHandler = <TArgs extends any[], TData = any,>(
+export const fetchHandler = <TArgs extends any[], TData = any>(
+  // eslint-disable-next-line
   fn: (...args: TArgs) => Promise<TData>,
-  redirectURL?: string
+  redirectURL?: string,
 ) => {
   // the context is important
   return async function (...args: TArgs): Promise<TData> {
-    let result: TData
+    let result: TData;
 
     try {
       result = await fn(...args);
@@ -38,13 +39,12 @@ export const fetchHandler = <TArgs extends any[], TData = any,>(
     }
 
     if (redirectURL) {
-      redirect(redirectURL)
+      redirect(redirectURL);
     }
 
-    return result
+    return result;
   };
-}
-
+};
 
 export const generateYAxis = (revenue: Row['revenue'][]) => {
   // Calculate what labels we need to display on the y-axis
@@ -54,7 +54,8 @@ export const generateYAxis = (revenue: Row['revenue'][]) => {
   const topLabel = Math.ceil(highestRecord / 1000) * 1000;
 
   for (let i = topLabel; i >= 0; i -= 1000) {
-    yAxisLabels.push(`$${i / 1000}K`);5
+    yAxisLabels.push(`$${i / 1000}K`);
+    5;
   }
 
   return { yAxisLabels, topLabel };

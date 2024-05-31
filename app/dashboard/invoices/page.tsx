@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { Skeletons, Search, fonts, Invoice} from 'ui';
-import {invoice} from 'data'
+import { Skeletons, Search, fonts, Invoice } from 'ui';
+import { invoice } from 'data';
 
 import { Metadata } from 'next';
 
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 const Page = async ({
-                      searchParams,
-                    }: {
+  searchParams,
+}: {
   searchParams?: {
     query?: string;
     page?: string;
@@ -18,7 +18,7 @@ const Page = async ({
 }) => {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await invoice.fetchPages(query)
+  const totalPages = await invoice.fetchPages(query);
 
   return (
     <div className="w-full">
@@ -29,7 +29,10 @@ const Page = async ({
         <Search placeholder="Search invoices..." />
         <Invoice.CreateNewButton />
       </div>
-      <Suspense key={query + currentPage} fallback={<Skeletons.InvoicesTableSkeleton />}>
+      <Suspense
+        key={query + currentPage}
+        fallback={<Skeletons.InvoicesTableSkeleton />}
+      >
         <Invoice.Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
@@ -37,6 +40,6 @@ const Page = async ({
       </div>
     </div>
   );
-}
+};
 
-export default Page
+export default Page;

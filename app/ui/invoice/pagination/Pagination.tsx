@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import {PaginationArrow, PaginationNumber} from './components'
-import {generatePagination} from 'utils'
+import { PaginationArrow, PaginationNumber } from './components';
+import { generatePagination } from 'utils';
 
 const Pagination = ({ totalPages }: { totalPages: number }) => {
   const pathname = usePathname();
@@ -31,16 +31,16 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
             let position: 'first' | 'last' | 'single' | 'middle' | undefined;
 
             if (index === 0) {
-              position = 'first'
+              position = 'first';
             }
             if (index === allPages.length - 1) {
-              position = 'last'
+              position = 'last';
             }
             if (allPages.length === 1) {
-              position = 'single'
+              position = 'single';
             }
             if (page === '...') {
-              position = 'middle'
+              position = 'middle';
             }
 
             return (
@@ -63,7 +63,6 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       </div>
     </>
   );
-}
+};
 
-
-export default Pagination
+export default Pagination;

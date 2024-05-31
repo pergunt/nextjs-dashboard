@@ -1,2 +1,2 @@
-export * as invoiceActions from './invoice'
-export * as authActions from './auth'
+export * as invoiceActions from './invoice';
+export * as authActions from './auth';

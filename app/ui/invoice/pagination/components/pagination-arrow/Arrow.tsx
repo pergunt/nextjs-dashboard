@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/24/outline";
-import Link from "next/link";
+import clsx from 'clsx';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 interface ArrowProps {
   href: string;
@@ -8,11 +8,7 @@ interface ArrowProps {
   isDisabled?: boolean;
 }
 
-const Arrow = ({
-   href,
-   direction,
-   isDisabled,
- }: ArrowProps) => {
+const Arrow = ({ href, direction, isDisabled }: ArrowProps) => {
   const className = clsx(
     'flex h-10 w-10 items-center justify-center rounded-md border',
     {
@@ -37,6 +33,6 @@ const Arrow = ({
       {icon}
     </Link>
   );
-}
+};
 
-export default Arrow
+export default Arrow;

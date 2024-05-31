@@ -5,7 +5,7 @@ import {
   InboxIcon,
 } from '@heroicons/react/24/outline';
 import { fonts } from '../../ui';
-import {dashboard} from 'data'
+import { dashboard } from 'data';
 
 const iconMap = {
   collected: BanknotesIcon,
@@ -15,14 +15,30 @@ const iconMap = {
 };
 
 export async function CardWrapper() {
-  const cardData = await dashboard.fetchCardData()
+  const cardData = await dashboard.fetchCardData();
 
   return (
     <>
-      <Card title="Collected" value={cardData.totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={cardData.totalPendingInvoices} type="pending" />
-      <Card title="Total Invoices" value={cardData.numberOfInvoices} type="invoices" />
-      <Card title="Total Customers" value={cardData.numberOfCustomers} type="customers" />
+      <Card
+        title="Collected"
+        value={cardData.totalPaidInvoices}
+        type="collected"
+      />
+      <Card
+        title="Pending"
+        value={cardData.totalPendingInvoices}
+        type="pending"
+      />
+      <Card
+        title="Total Invoices"
+        value={cardData.numberOfInvoices}
+        type="invoices"
+      />
+      <Card
+        title="Total Customers"
+        value={cardData.numberOfCustomers}
+        type="customers"
+      />
     </>
   );
 }
@@ -45,8 +61,7 @@ export function Card({
         <h3 className="ml-2 text-sm font-medium">{title}</h3>
       </div>
       <p
-        className={`${fonts.lusitana.className}
-          truncate rounded-xl bg-white px-4 py-8 text-center text-2xl`}
+        className={`${fonts.lusitana.className} truncate rounded-xl bg-white px-4 py-8 text-center text-2xl`}
       >
         {value}
       </p>

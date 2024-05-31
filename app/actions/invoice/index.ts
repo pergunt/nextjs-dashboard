@@ -1,12 +1,12 @@
 'use server';
 
-import {db} from 'configs'
-import {fetchHandler} from 'utils'
-import {schemas} from './duck'
-import {revalidatePath} from "next/cache";
-import {redirect} from "next/navigation";
+import { db } from 'configs';
+import { fetchHandler } from 'utils';
+import { schemas } from './duck';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-const ROUTE_PATH = '/dashboard/invoices'
+const ROUTE_PATH = '/dashboard/invoices';
 
 export type State = {
   errors?: {
@@ -18,8 +18,8 @@ export type State = {
 };
 
 export const createOne = async (prevSate: State, formData: FormData) => {
-  const entries = Object.fromEntries(formData.entries())
-  const validatedFields = schemas.CreateUpdateInvoice.safeParse(entries)
+  const entries = Object.fromEntries(formData.entries());
+  const validatedFields = schemas.CreateUpdateInvoice.safeParse(entries);
 
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
@@ -29,7 +29,7 @@ export const createOne = async (prevSate: State, formData: FormData) => {
     };
   }
 
-  const {amount, customer_id, status} = validatedFields.data
+  const { amount, customer_id, status } = validatedFields.data;
   const createdAt = new Date().toISOString().split('T')[0];
   const amountInCents = amount * 100;
 
@@ -40,9 +40,9 @@ export const createOne = async (prevSate: State, formData: FormData) => {
         amount: amountInCents,
         createdAt,
         customer_id,
-        status
+        status,
       })
-      .execute()
+      .execute();
   } catch (e: any) {
     // If a database error occurs, return a more specific error.
     return {
@@ -50,13 +50,17 @@ export const createOne = async (prevSate: State, formData: FormData) => {
     };
   }
 
-  revalidatePath(ROUTE_PATH)
-  redirect(ROUTE_PATH)
-}
+  revalidatePath(ROUTE_PATH);
+  redirect(ROUTE_PATH);
+};
 
-export const updateOne = async (id: string, prevState: State, formData: FormData) => {
-  const entries = Object.fromEntries(formData.entries())
-  const validatedFields = schemas.CreateUpdateInvoice.safeParse(entries)
+export const updateOne = async (
+  id: string,
+  prevState: State,
+  formData: FormData,
+) => {
+  const entries = Object.fromEntries(formData.entries());
+  const validatedFields = schemas.CreateUpdateInvoice.safeParse(entries);
 
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
@@ -66,7 +70,7 @@ export const updateOne = async (id: string, prevState: State, formData: FormData
     };
   }
 
-  const {amount, customer_id, status} = validatedFields.data
+  const { amount, customer_id, status } = validatedFields.data;
   const amountInCents = amount * 100;
 
   try {
@@ -76,10 +80,10 @@ export const updateOne = async (id: string, prevState: State, formData: FormData
         amount: amountInCents,
         updatedAt: new Date(),
         customer_id,
-        status
+        status,
       })
       .where('id', '=', id)
-      .execute()
+      .execute();
   } catch (e: any) {
     // If a database error occurs, return a more specific error.
     return {
@@ -87,15 +91,12 @@ export const updateOne = async (id: string, prevState: State, formData: FormData
     };
   }
 
-  revalidatePath(ROUTE_PATH)
-  redirect(ROUTE_PATH)
-}
+  revalidatePath(ROUTE_PATH);
+  redirect(ROUTE_PATH);
+};
 
 export const deleteOne = fetchHandler<[string]>(async (id) => {
-  await db
-    .deleteFrom('invoices')
-    .where('id', '=', id)
-    .execute()
+  await db.deleteFrom('invoices').where('id', '=', id).execute();
 
-  revalidatePath(ROUTE_PATH)
-})
+  revalidatePath(ROUTE_PATH);
+});

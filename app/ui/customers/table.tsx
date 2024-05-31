@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Search from '../search';
 import { lusitana } from '../fonts';
-import {
-  Customer,
-} from 'types';
+import { Customer } from 'types';
 
 interface FormattedCustomer extends Customer {
   total_pending: number;

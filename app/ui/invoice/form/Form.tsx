@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import {
@@ -8,25 +8,25 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { useFormState } from 'react-dom';
-import {ErrorMessage} from './components'
+import { ErrorMessage } from './components';
 import Button from 'ui/Button';
-import {invoiceActions} from 'actions'
+import { invoiceActions } from 'actions';
 import { Customer, Invoice } from 'types';
 
 interface FormProps {
-  customers: Customer[]
+  customers: Customer[];
   invoice?: Invoice;
 }
 
- const Form = ({ customers, invoice }: FormProps) => {
+const Form = ({ customers, invoice }: FormProps) => {
   const action = invoice
     ? invoiceActions.updateOne.bind(null, invoice.id)
-    : invoiceActions.createOne
+    : invoiceActions.createOne;
 
-   const [state, dispatch] = useFormState(action, {
-     message: null,
-     errors: {}
-   });
+  const [state, dispatch] = useFormState(action, {
+    message: null,
+    errors: {},
+  });
 
   return (
     <form action={dispatch}>
@@ -53,9 +53,7 @@ interface FormProps {
                 </option>
               ))}
             </select>
-            <UserCircleIcon
-              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500"
-            />
+            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           <ErrorMessage
             id="customer-error"
@@ -70,7 +68,7 @@ interface FormProps {
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
-            <input
+              <input
                 id="amount"
                 name="amount"
                 type="number"
@@ -83,10 +81,7 @@ interface FormProps {
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          <ErrorMessage
-            id="amount-error"
-            errors={state.errors?.amount}
-          />
+          <ErrorMessage id="amount-error" errors={state.errors?.amount} />
         </div>
 
         {/* Invoice Status */}
@@ -131,10 +126,7 @@ interface FormProps {
                 </label>
               </div>
             </div>
-            <ErrorMessage
-              id="status-error"
-              errors={state.errors?.status}
-            />
+            <ErrorMessage id="status-error" errors={state.errors?.status} />
           </div>
         </fieldset>
       </div>
@@ -147,19 +139,16 @@ interface FormProps {
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
-          className="p-2 rounded-lg border text-gray-600 transition-colors hover:bg-gray-200"
+          className="rounded-lg border p-2 text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancel
         </Link>
-        <Button
-          type="submit"
-          kind='primary'
-        >
+        <Button type="submit" kind="primary">
           Submit
         </Button>
       </div>
     </form>
   );
-}
+};
 
-export default Form
+export default Form;

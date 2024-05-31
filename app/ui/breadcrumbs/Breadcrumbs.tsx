@@ -8,11 +8,7 @@ interface Breadcrumb {
   active?: boolean;
 }
 
-const Breadcrumbs = ({
-  breadcrumbs,
-}: {
-  breadcrumbs: Breadcrumb[];
-})  => {
+const Breadcrumbs = ({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) => {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 block">
       <ol className={clsx(lusitana.className, 'flex text-xl md:text-2xl')}>
@@ -33,6 +29,6 @@ const Breadcrumbs = ({
       </ol>
     </nav>
   );
-}
+};
 
-export default Breadcrumbs
+export default Breadcrumbs;

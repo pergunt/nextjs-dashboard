@@ -1,1 +1,1 @@
-export {default} from "./UpdateLink";
+export { default } from './UpdateLink';

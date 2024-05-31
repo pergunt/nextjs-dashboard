@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {Status, DeleteButton, UpdateLink} from './components';
+import { Status, DeleteButton, UpdateLink } from './components';
 import { formatDateToLocal, formatCurrency } from 'utils';
 import { invoice } from 'data';
 
@@ -12,7 +12,7 @@ async function Table({
 }) {
   const invoices = await invoice.listFiltered({
     query,
-    currentPage
+    currentPage,
   });
 
   return (
@@ -131,4 +131,4 @@ async function Table({
   );
 }
 
-export default Table
+export default Table;

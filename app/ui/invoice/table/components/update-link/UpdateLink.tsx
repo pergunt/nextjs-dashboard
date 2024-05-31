@@ -1,5 +1,5 @@
-import Link from "next/link";
-import {PencilIcon} from "@heroicons/react/24/outline";
+import Link from 'next/link';
+import { PencilIcon } from '@heroicons/react/24/outline';
 
 const UpdateLink = ({ id }: { id: string }) => {
   return (
@@ -10,6 +10,6 @@ const UpdateLink = ({ id }: { id: string }) => {
       <PencilIcon className="w-5" />
     </Link>
   );
-}
+};
 
-export default UpdateLink
+export default UpdateLink;
