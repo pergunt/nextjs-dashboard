@@ -1,30 +1,22 @@
 'use client'
 
 import {FC} from 'react'
-import { motion } from "framer-motion"
 import clsx from 'clsx'
 
 interface SpinnerProps {
-  className?: string | Record<string, boolean>;
-  fill?: 'black' | 'white';
-  animate?: boolean;
+  className?: string;
 }
 
 const Spinner: FC<SpinnerProps> = (
   {
-    fill = 'black',
-    animate,
-    className
+    className = 'black',
   }
   ) => {
 
     return (
-      <span
-        className='h-[14px]'
-      >
         <svg
           aria-hidden="true"
-          className={`w-full h-full animate-spin text-transparent fill-${fill}`}
+          className={clsx(`h-[14px] w-[14px] animate-spin text-transparent`, className)}
           viewBox="0 0 100 101"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -37,8 +29,6 @@ const Spinner: FC<SpinnerProps> = (
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
-      </span>
     )
 }
 

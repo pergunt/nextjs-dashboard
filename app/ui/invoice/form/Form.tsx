@@ -154,7 +154,6 @@ interface FormProps {
         <Button
           type="submit"
           kind='primary'
-          className='w-[70px]'
         >
           Submit
         </Button>
