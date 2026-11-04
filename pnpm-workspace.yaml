@@ -1,6 +1,9 @@
 packages:
   - .
+allowBuilds:
+  bcrypt: true
+  sharp: true
 minimumReleaseAge: 2880
-onlyBuiltDependencies:
-  - bcrypt
-  - sharp
+minimumReleaseAgeExclude:
+  - '@next/eslint-plugin-next@16.4.5'
+  - eslint-config-next@16.4.5
